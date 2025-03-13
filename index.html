@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MHRealty</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100">
+  <header class="bg-blue-600 text-white py-6">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold">MHRealty</h1>
+      <p class="mt-2">Discover Your Dream Property</p>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-semibold mb-6">Featured Properties</h2>
+
+    <!-- Loading Spinner -->
+    <div id="loader" class="flex justify-center my-12">
+      <div class="loader ease-linear rounded-full border-4 border-gray-200 h-12 w-12"></div>
+    </div>
+
+    <!-- Properties Container -->
+    <div id="properties-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden"></div>
+
+    <!-- Pagination -->
+    <div id="pagination-container" class="mt-8 flex justify-center hidden">
+      <nav class="flex items-center space-x-1">
+        <button id="first-page"
+          class="pagination-btn px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+          disabled>
+          <i class="fas fa-angle-double-left"></i>
+        </button>
+        <button id="prev-page"
+          class="pagination-btn px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+          disabled>
+          <i class="fas fa-angle-left"></i>
+        </button>
+        <div id="page-numbers" class="flex items-center space-x-1"></div>
+        <button id="next-page"
+          class="pagination-btn px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+          <i class="fas fa-angle-right"></i>
+        </button>
+        <button id="last-page"
+          class="pagination-btn px-3 py-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-50">
+          <i class="fas fa-angle-double-right"></i>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-message" class="hidden p-4 bg-red-100 text-red-700 rounded-md my-4"></div>
+  </main>
+</body>
+
+</html>
