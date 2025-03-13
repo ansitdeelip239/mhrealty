@@ -64,21 +64,25 @@ function displayProperties(properties) {
   propertiesContainer.innerHTML = "";
 
   properties.forEach((property) => {
-    let imageUrl = "https://via.placeholder.com/400x300?text=No+Image";
+    let imageUrl = "https://placehold.co/400x300";
 
     // Try to parse the imageURL if it's in JSON format
     try {
-      if (property.imageURL.startsWith("[")) {
+      if (property.imageURL && property.imageURL.startsWith("[")) {
         const images = JSON.parse(property.imageURL);
         if (images && images.length > 0 && images[0].imageUrl) {
           imageUrl = images[0].imageUrl;
         }
-      } else if (property.imageURL) {
+      } else if (property.imageURL && property.imageURL.trim() !== "") {
         imageUrl = property.imageURL;
       }
     } catch (e) {
       console.error("Error parsing image URL:", e);
+      // Keep the fallback image if parsing fails
     }
+
+    // Add image error handler
+    const handleImageError = `onerror="this.onerror=null; this.src='https://placehold.co/400x300';"`;
 
     // Format price with commas
     const formattedPrice = property.price.toLocaleString("en-IN");
@@ -91,8 +95,8 @@ function displayProperties(properties) {
     propertyCard.innerHTML = `
           <div class="relative h-48 overflow-hidden">
             <img src="${imageUrl}" alt="${
-      property.propertyName
-    }" class="w-full h-full object-cover">
+      property.propertyName || "Property"
+    }" class="w-full h-full object-cover" ${handleImageError}>
             <div class="absolute top-2 right-2 bg-blue-600 text-white px-2 py-1 rounded text-xs font-medium">
               ${property.propertyDetails.propertyForType || "Property"}
             </div>
